@@ -5,31 +5,27 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 )
 
 func main() {
-	endPoint := "https://amisend.com/api/contacts/add"
+	// endpoint
+	endPoint := "https://amisend.com/api/contacts/groups/add"
 
+	// authentication
 	userName := ""
 	apiKey := ""
 
-	postData := map[string]string{
-		"name":   "",
-		"phone":  "",
-		"tags":   "",
-		"groups": "",
+	// data
+	groupData := map[string]string{
+		"name": "",
+		"tags": "",
 	}
 
-	params, _ := json.Marshal(postData)
+	params, _ := json.Marshal(groupData)
 
 	request, err := http.NewRequest("POST", endPoint, bytes.NewBuffer(params))
-
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	request.Header.Add("Content-Type", "application/json")
 	request.Header.Set("x-api-user", userName)
