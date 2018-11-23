@@ -21,7 +21,7 @@ func main() {
 	// data
 
 	groupData := map[string]string{
-		"groups": "Group Test",
+		"groups": "",
 	}
 
 	params, _ := json.Marshal(groupData)
