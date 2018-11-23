@@ -11,31 +11,36 @@ import (
 )
 
 func main() {
-	endPoint := "https://amisend.com/api/contacts/add"
+	// endpoint
+	addContactURL := "https://amisend.com/api/contacts/add"
 
-	userName := ""
-	apiKey := ""
+	// authentication
+	var x_username string = ""
+	var x_apikey string = ""
 
-	postData := map[string]string{
+	// data
+	createContact := map[string]string{
 		"name":   "",
 		"phone":  "",
 		"tags":   "",
 		"groups": "",
 	}
 
-	params, _ := json.Marshal(postData)
+	params, _ := json.Marshal(createContact)
 
-	request, err := http.NewRequest("POST", endPoint, bytes.NewBuffer(params))
+	// request
+	request, err := http.NewRequest("POST", addContactURL, bytes.NewBuffer(params))
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	request.Header.Add("Content-Type", "application/json")
-	request.Header.Set("x-api-user", userName)
-	request.Header.Set("x-api-key", apiKey)
+	request.Header.Set("x-api-user", x_username)
+	request.Header.Set("x-api-key", x_apikey)
 	request.Header.Set("Content-Length", strconv.Itoa(len(params)))
 
+	// response
 	response, err := http.DefaultClient.Do(request)
 
 	if err != nil {
