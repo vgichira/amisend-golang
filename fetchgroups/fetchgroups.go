@@ -11,8 +11,8 @@ func main() {
 	var fetchGroupsURL string = "https://amisend.com/api/contacts/groups/fetch"
 
 	// authentication
-	var x_username string = "vgichira"
-	var x_apikey string = "ami_f8e36721dc387e81ebc6111668da96b9fffee4a4"
+	var x_username string = ""
+	var x_apikey string = ""
 
 	// request
 	request, err := http.NewRequest("GET", fetchGroupsURL, nil)
