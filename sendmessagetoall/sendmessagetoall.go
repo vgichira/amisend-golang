@@ -13,14 +13,14 @@ func main() {
 	var sendMessageURL string = "https://amisend.com/api/sms/send/all"
 
 	// authentication
-	var x_username string = "vgichira"
-	var x_apikey string = "vgichira"
+	var x_username string = ""
+	var x_apikey string = ""
 
 	// data
 	createMessage := map[string]string{
-		"message":  "Relax, this is a test",
+		"message":  "",
 		"senderId": "",
-		"refId":    "amiami",
+		"refId":    "",
 	}
 
 	params, err := json.Marshal(createMessage)
