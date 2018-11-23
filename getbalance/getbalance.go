@@ -2,27 +2,45 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 )
 
 func main() {
-	req, err := http.NewRequest("GET", "https://amisend.com/api/topups/balance", nil)
+	// endpoint
+	var endPoint string = "https://amisend.com/api/topups/balance"
+
+	var userName string = ""
+	var apiKey string = ""
+
+	// request
+	req, err := http.NewRequest("GET", endPoint, nil)
+
 	if err != nil {
-		log.Print(err)
+		log.Println(err.Error())
 		os.Exit(1)
 	}
 
-	q := req.URL.Query()
-	q.Add("x-api-user", "")
-	q.Add("x-api-key", "")
-	q.Add("Content-Type", "application/json")
-	req.URL.RawQuery = q.Encode()
+	// headers
+	req.Header.Add("x-api-user", userName)
+	req.Header.Add("x-api-key", apiKey)
+	req.Header.Add("Content-Type", "application/json")
 
 	response, err := http.DefaultClient.Do(req)
 
-	fmt.Println(response)
-	// Output:
-	// http://api.themoviedb.org/3/tv/popular?another_thing=foo+%26+bar&api_key=key_from_environment_or_flag
+	if err != nil {
+		panic(err.Error())
+	}
+
+	body, err := ioutil.ReadAll(response.Body)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	defer response.Body.Close()
+
+	fmt.Println(string(body))
 }
