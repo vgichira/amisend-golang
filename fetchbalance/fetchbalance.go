@@ -11,8 +11,8 @@ func main() {
 	var endPoint string = "https://amisend.com/api/topups/balance"
 
 	// authentication
-	var x_username string = "vgichira"
-	var x_apikey string = "vgichira"
+	var x_username string = ""
+	var x_apikey string = ""
 
 	// request
 	request, err := http.NewRequest("GET", endPoint, nil)
